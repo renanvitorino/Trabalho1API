@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const SECRET_KEY = '1606'; // Troque por uma chave segura
+const SECRET_KEY = '1606'; 
 
-// Simulação de usuário (substitua por banco de dados)
+// Simulação de usuário 
 const fakeUser = {
   id: 1,
   username: 'admin',
