@@ -1,84 +1,134 @@
-# API de Gerenciamento de Peças e Componentes
+API de Gerenciamento de Peças e Componentes
 
-Esta é uma API simples para gerenciar peças e componentes, desenvolvida em **Node.js** com **Express** e **SQLite**. Ela permite:
+Esta é uma API simples para gerenciar peças e componentes, desenvolvida em Node.js com Express e SQLite. Ela permite:
 
-- Criar peças.
-- Adicionar componentes a essas peças.
-- Listar todas as peças.
-- Obter detalhes de uma peça específica.
-- Listar os componentes associados a uma peça.
+1.Criar peças.
+2.Adicionar componentes a essas peças.
+3.Listar todas as peças.
+4.Obter detalhes de uma peça específica.
+5.Listar os componentes associados a uma peça.
 
+Tecnologias utilizadas
+
+  1.Linguagem: Node.js com Express
+  2.Banco de dados: SQLite
+  3.Autenticação: Bearer Token
+  4.Smoke_Test: No repositório para dúvidas do funcionamento.
+
+Requisitos
 
 Antes de começar, certifique-se de ter instalado:
+Node.js (versão 18 ou superior)
 
-- [Node.js](https://nodejs.org/) (versão 18 ou superior)
-- [Git](https://git-scm.com/) (opcional, para versionamento do código)
+Git (opcional, para versionamento do código)
 
+Configuração do Projeto
 
-## Como Configurar o Projeto
+Clone o repositório:
 
-1. **Clone o repositório** (se estiver usando Git):
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
+git clone https://github.com/renanvitorino/Trabalho1API.git
+
+Entre na pasta do projeto:
+
+cd Trabalho1API
 
 Instale as dependências:
 
-bash
-Copy
 npm install
+
 Inicie o servidor:
 
-bash
-Copy
-npm start
-O servidor estará rodando em http://localhost:3000.
+npm start / node server.js / node src/server.js (Olhar no arquivo de inicialização)
 
 Rotas da API
-Aqui estão as rotas disponíveis:
 
-1. Criar uma Peça
-Método: POST
+  1.Autenticação
 
-URL: /api/v1/peca
+Adquirir Token
 
-Body (JSON):
+Rota: POST http://localhost:3000/api/v1/login
 
-json
-Copy
+Corpo da requisição (JSON):
+
 {
-  "codigo": "1606",
-  "nome": "Peça de Exemplo"
+  "usuario": "admin",
+  "senha": "123456"
 }
 
-2. Adicionar um Componente à Peça
-Método: POST
+Retorno esperado:
 
-URL: /api/v1/peca/{codigo}/componente
-
-Body (JSON):
-
-json
-Copy
 {
-  "sku": "C001",
-  "descricao": "Componente de Teste",
-  "preco": 10.99,
+  "token": "seu_token_aqui"
+}
+
+  2.Peças
+
+Criar Peça
+
+Rota: POST http://localhost:3000/api/v1/peca
+
+Cabeçalho: Authorization: Bearer seu_token
+
+Corpo da requisição (JSON):
+
+{
+  "codigo": "240707",
+  "nome": "SmokeTest"
+}
+
+Retorno esperado: 201 Created
+
+  3.Obter detalhes de uma Peça
+
+Rota: GET http://localhost:3000/api/v1/peca/240707
+
+Cabeçalho: Authorization: Bearer seu_token
+
+Retorno esperado: 200 OK
+
+Listar todas as Peças
+
+Rota: GET http://localhost:3000/api/v1/peca/
+
+Cabeçalho: Authorization: Bearer seu_token
+
+Retorno esperado: 200 OK
+
+
+Componentes
+
+  4.Criar Componente
+
+Rota: POST http://localhost:3000/api/v1/peca/240707/componente
+
+Cabeçalho: Authorization: Bearer seu_token
+
+Corpo da requisição (JSON):
+
+{
+  "codigo": "240707",
+  "sku": "SMK-001",
+  "descricao": "Sensor de Fumaça",
+  "preco": 199.90,
   "quantidade": 5
 }
 
-3. Listar Todas as Peças
-Método: GET
+Retorno esperado: 201 Created
 
-URL: /api/v1/peca/
+  5.Listar Componentes de uma Peça
 
-4. Obter Detalhes de uma Peça
-Método: GET
+Rota: GET http://localhost:3000/api/v1/peca/240707/componente
 
-URL: /api/v1/peca/{codigo}
+Cabeçalho: Authorization: Bearer seu_token
 
-5. Listar Componentes de uma Peça
-Método: GET
+Retorno esperado: 200 OK
 
-URL: /api/v1/peca/{codigo}/componente/
+Autor
 
+Nome: Renan Viana Vitorino Ornellas
+RA: 2401220
+Trabalho 
+Local: São Paulo / SP
+
+Qualquer dúvida entrar em contato pelo e-mail:
+renanornellas160602@gmail.com
